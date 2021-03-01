@@ -1,9 +1,9 @@
 module Lib
-    ( someFunc
+    ( sayHello
     ) where
 
-someFunc :: IO ()
-someFunc = putStrLn "someFunc"
+sayHello :: String -> IO ()
+sayHello x  = putStrLn ("Hello my name is "++ x ++ "!") 
 
 ------------------------------------------------ PRACTICA 1 ----------------------------------------------
 
@@ -86,18 +86,37 @@ producto num counter = num + producto num (counter-1)
 
 ----------------------------------------- PRACTICA 2 -----------------------------------------------------------
 
------------------------------------------ PRACTICA 3 -----------------------------------------------------------
+--EX 1
 
+opera :: Num a => (a->a->a)->[a]->a
+opera _ [x] = x 
+opera f (x:xs) = x `f` opera f xs
+
+
+--EX 2
+opera2 :: Num a => (a->a->a)->[a]->[a]
+opera2 _ [x] = [x]
+opera2 f [x,y]= [x `f` y]
+opera2 f (x:y:xs) = x `f` y:opera2 f (y:xs) 
+
+
+-- EX 3
+filtra :: (a->Bool)->[a]->[a]
+filtra _ []=[]
+filtra f (x:xs) = if f x then x:filtra f xs else filtra f xs
+
+ -- EX 4
+
+rechaza :: (a->Bool)->[a]->[a]
+rechaza _ []=[]
+rechaza f (x:xs) = if not (f x) then x:rechaza f xs else rechaza f xs
+
+----------------------------------------- PRACTICA 3 -----------------------------------------------------------
+--EXERCICES_PLP_HASKELL.hs
 ----------------------------------------- PRACTICA 4 -----------------------------------------------------------
 
 
-
-
-
-
-
-
-
+ 
 
 
 
